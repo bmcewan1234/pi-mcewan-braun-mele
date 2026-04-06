@@ -6,4 +6,4 @@ function Header(){
       </div>
     )
 }
-export default Headergit 
+export default Header 
