@@ -7,13 +7,13 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    
       <React.Fragment>
         <Header />
         <Home />
         <Footer />
       </React.Fragment>
-    </BrowserRouter>
+    
 
   );
 }

@@ -28,7 +28,7 @@ class CardPeli extends Component {
             <React.Fragment>
 
                 {/*img (cambiar img*/}
-                <img src={this.props.pelicula.poster_path} alt={this.props.pelicula.title} />
+                <img src={"https://image.tmdb.org/t/p/w342/" + this.props.pelicula.poster_path} alt={this.props.pelicula.title} />
 
                 <h2>{this.props.pelicula.title}</h2> 
 
