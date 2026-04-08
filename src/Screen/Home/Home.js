@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
-import CardPeli from "./Componentes/CardPeli/CardPeli";
+import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
 
 class Home extends Component{
     constructor(props){
@@ -11,7 +11,7 @@ class Home extends Component{
             cartel: []
         }
     }
-
+    
     evitarSubmit(e){
         e.preventDefault();
         this.props.history.push("/search/"+this.state.valor)
@@ -46,7 +46,7 @@ class Home extends Component{
             <Link to="/populares">Ver todas</Link>
 
             {this.state.populares.map((peli, idx) => 
-            <CardPeli 
+            <Cardpeli 
                 key={idx}
                 pelicula={peli}/>)}            
 
@@ -54,10 +54,9 @@ class Home extends Component{
             <Link to="/cartel">Ver todas</Link>
 
             {this.state.cartel.map((peli, idx) => 
-            <CardPeli 
+            <Cardpeli 
                 key={idx}
                 pelicula={peli}/>)}
-
         </React.Fragment>
         )
     }

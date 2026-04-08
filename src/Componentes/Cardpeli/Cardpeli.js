@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { Link } from "react-router-dom";
+import { BrowserRouter ,Link, Route, Switch } from "react-router-dom";
 
 class CardPeli extends Component {
     constructor(props){
