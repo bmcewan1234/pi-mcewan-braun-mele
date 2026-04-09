@@ -12,15 +12,27 @@ class DetallePeli extends Component{
         const id= this.props.match.params.id;
         fetch("https://api.themoviedb.org/3/movie/" + id + "?api_key=8c9e1a0f2c5d1e7b4a9c8e5f6a7b8c9&language=en-US")
         .then(response => response.json())
-        .then(data => this.setState({ personake: data }))
+        .then(data => this.setState({ personaje: data }))
         .catch(error => console.log(error))
     }
     render(){
         return(
-               {
-
-               }
-            ) 
+            <>
+            {this.state.personaje ? (
+                <>
+                <h2 className="alert alert-warning">{this.state.personaje.original_title}</h2>
+                <section className="container">
+                    <section className="row">
+                        <h3 className="alert alert-info">Descripcion</h3>
+                        <p className="Pdeta">Genero:{this.state.personaje.overview}</p>
+                    </section>
+                </section>
+                </>
+               ) :(
+                <p>Cargando...</p>
+               )}
+            </>
+        ) 
     }
 }
 
