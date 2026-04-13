@@ -23,8 +23,12 @@ class DetallePeli extends Component{
                 <h2 className="alert alert-warning">{this.state.personaje.original_title}</h2>
                 <section className="container">
                     <section className="row">
-                        <h3 className="alert alert-info">Descripcion</h3>
-                        <p className="Pdeta">Genero:{this.state.personaje.overview}</p>
+                        <h3>Descripcion</h3>
+                        <p className="Pdeta">{this.state.personaje.overview}</p>
+                        <p className="Pdeta">Genero:{this.state.personaje.genres[0].name}</p>
+                        <p className="Pdeta">Rating:{this.state.personaje.vote_average}</p>
+                        <p className="Pdeta">Fecha de estreno:{this.state.personaje.release_date}</p>
+                        <p className="Pdeta">Duracion:{this.state.personaje.runtime} minutos</p>
                     </section>
                 </section>
                 </>
