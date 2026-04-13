@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 function Header() {
-  let array = [{ nombre: "Home", link: "/Home.js" }, { nombre: "Log in", link: "/login" }, { nombre: "Sign in", link: "/Signin" }, {nombre : "Favoritos", link : "/Favoritos"}];
+  let array = [{ nombre: "Home", link: "/Home.js" }, { nombre: "Peliculas", link:"/peliculas" }, { nombre: "Series", link:"/series" }, { nombre: "Log in", link: "/login" }, { nombre: "Sign in", link: "/Signin" }, {nombre : "Favoritos", link : "/Favoritos"}];
   return (
     <React.Fragment>
       <div >
