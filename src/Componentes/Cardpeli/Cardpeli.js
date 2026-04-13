@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import { BrowserRouter ,Link, Route, Switch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class CardPeli extends Component {
     constructor(props){
@@ -25,30 +25,32 @@ class CardPeli extends Component {
 
     render(){
         return(
-            <React.Fragment>
+            <article className="single-card-movie">
 
                 {/*img (cambiar img*/}
                 <img src={"https://image.tmdb.org/t/p/w342/" + this.props.pelicula.poster_path} alt={this.props.pelicula.title} />
 
-                <h2>{this.props.pelicula.title}</h2> 
+                <div className="cardBody">
+                    <h2>{this.props.pelicula.title}</h2> 
 
-                <div className="card-buttons">
-                    <button onClick={() => this.boton()}>{this.state.ver}</button>
-                </div>
+                    <div className="card-buttons">
+                        <button onClick={() => this.boton()}>{this.state.ver}</button>
+                    </div>
  
-                <div className={this.state.clase}>
-                    <p>{this.props.pelicula.overview}</p>
-                </div>
+                    <div className={this.state.clase + " card-text"}>
+                        <p>{this.props.pelicula.overview}</p>
+                    </div>
                 
-                <div className="card-buttons">
-		            <Link to={"/detalle/" + this.props.pelicula.id}>
-                        <button>Ir a detalle</button>
-                    </Link>
+                    <div className="card-buttons">
+		                <Link to={"/detalle/" + this.props.pelicula.id}>
+                            <button>Ir a detalle</button>
+                        </Link>
+                    </div>
                 </div>
 
             {/*boton agregar/quitar de favoritos en CardRM*/}
 
-            </React.Fragment>
+            </article>
         )
     }
 }

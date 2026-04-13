@@ -1,8 +1,6 @@
-import { BrowserRouter ,Link, Route, Switch } from "react-router-dom";
-
 function Footer(){
     return(
-        <footer>
+        <footer className="cardBody">
             <p>Benjamin McEwan/Franco Mele/Iñaki Braun</p>
         </footer>
     )

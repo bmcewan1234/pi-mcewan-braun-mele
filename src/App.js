@@ -6,15 +6,12 @@ import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
 
 function App() {
-  return (
-    
+  return (    
       <React.Fragment>
         <Header />
         <Home />
         <Footer />
       </React.Fragment>
-    
-
   );
 }
 
