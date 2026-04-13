@@ -28,9 +28,9 @@ return;
 
 let users = JSON.parse(localStorage.getItem("users")) || [];
 
-const userExist = users.find(u => u.email === email);
+const userExiste = users.find(u => u.email === email);
 
-if (userExist) {
+if (userExiste) {
 this.setState({ error: "Email ya registrado" });
 return;
 }
