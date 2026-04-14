@@ -2,7 +2,9 @@ import React from "react";
 import Header from "./Componentes/Header/Header";
 import Footer from "./Componentes/Footer/Footer";
 import Home from "./Screen/Home/Home";
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import Buscador from "./Componentes/Buscador/Buscador";
+
+
 
 
 function App() {
@@ -10,6 +12,7 @@ function App() {
       <React.Fragment>
         <Header />
         <Home />
+        <Buscador />
         <Footer />
       </React.Fragment>
   );

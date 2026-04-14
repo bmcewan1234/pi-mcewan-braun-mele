@@ -1,8 +1,8 @@
-import {component} from 'react';
+import {Component} from 'react';
 import {link} from 'react-router-dom';
 import{withRouter} from 'react-router-dom';
 
-class Buscador extends component{
+class Buscador extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ class Buscador extends component{
     }
 
     evitarSubmit(e){
-        if(this.state.valor.length != 0 && this.state.tipo.length != 0){
+        if(this.state.valor.length !== 0 && this.state.tipo.length !== 0){
             e.preventDefault();
             this.props.history.push("/search/"+this.state.valor+"/"+this.state.tipo)
         }else{
