@@ -14,7 +14,7 @@ class DetalleSerie extends Component {
             .then(data => this.setState({ personaje: data }))
             .catch(error => console.log(error))
 
-        
+
     }
 
     render() {
@@ -34,7 +34,7 @@ class DetalleSerie extends Component {
                                 <p class="mt-0 seasons"><strong>Temporadas:</strong>{this.state.personaje.number_of_seasons}</p>
                                 <button className="btn alert-primary">Favoritos</button>
                             </section>
-                            <img class="col-md-6" src={"https://image.tmdb.org/t/p/w342" + this.state.personaje.poster_path} alt=""/>
+                            <img class="col-md-6" src={"https://image.tmdb.org/t/p/w342" + this.state.personaje.poster_path} alt="" />
                         </section>
                     </>
                 ) : (

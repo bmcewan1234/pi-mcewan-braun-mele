@@ -1,4 +1,4 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import Card from "../Card/Card";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";

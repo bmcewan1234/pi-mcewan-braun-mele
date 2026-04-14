@@ -8,13 +8,13 @@ import Buscador from "./Componentes/Buscador/Buscador";
 
 
 function App() {
-  return (    
-      <React.Fragment>
-        <Header />
-        <Home />
-        <Buscador />
-        <Footer />
-      </React.Fragment>
+  return (
+    <React.Fragment>
+      <Header />
+      <Home />
+      <Buscador />
+      <Footer />
+    </React.Fragment>
   );
 }
 
