@@ -38,27 +38,60 @@ class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.enviarFormulario}>
-                <h2>Login</h2>
+            <div className="container mt-5">
 
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={this.cambiarDatos}
-                />
+                <h2 className="alert alert-primary text-center">
+                    Iniciar sesión
+                </h2>
 
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={this.cambiarDatos}
-                />
+                <div className="row justify-content-center">
+                    <div className="col-md-6">
 
-                <button type="submit">Ingresar</button>
+                        <form onSubmit={this.enviarFormulario}>
 
-                <p>{this.state.error}</p>
-            </form>
+                            <div className="form-group">
+                                <label>Email</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    className="form-control"
+                                    placeholder="Ingresá tu email"
+                                    onChange={this.cambiarDatos}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Contraseña</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="form-control"
+                                    placeholder="Ingresá tu contraseña"
+                                    onChange={this.cambiarDatos}
+                                />
+                            </div>
+
+                            <button
+                                type="submit"
+                                className="btn btn-primary btn-block mt-3"
+                            >
+                                Iniciar sesión
+                            </button>
+
+                        </form>
+
+                        <p className="mt-3 text-center">
+                            ¿No tenés cuenta?{" "}
+                            <a href="/register">Registrarse</a>
+                        </p>
+
+                        <p className="text-danger text-center">
+                            {this.state.error}
+                        </p>
+
+                    </div>
+                </div>
+            </div>
         );
     }
 }
