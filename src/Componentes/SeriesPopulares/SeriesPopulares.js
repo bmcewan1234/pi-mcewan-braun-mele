@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "../Card/Card";
+import CardSerie from "../CardSeries/CardSeries.js";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";
 
@@ -26,7 +26,7 @@ class SeccionPelisPopulares extends Component {
         return (
             <div className="cards">
                 {this.state.peliculas.map((pelicula) => (
-                    <Card
+                    <CardSerie
                         key={pelicula.id}
                         id={pelicula.id}
                         nombre={pelicula.title}
@@ -35,6 +35,7 @@ class SeccionPelisPopulares extends Component {
                         tipo="movie"
                     />
                 ))}
+
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Card from "../Card/Card";
+import CardPeli from "../Cardpeli/Cardpeli.js";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";
 
@@ -26,13 +26,9 @@ class SeccionPelisPopulares extends Component {
         return (
             <div className="row cards" id="movies">
                 {this.state.peliculas.map((pelicula) => (
-                    <Card
+                    <CardPeli
                         key={pelicula.id}
-                        id={pelicula.id}
-                        nombre={pelicula.title}
-                        imagen={pelicula.poster_path}
-                        descripcion={pelicula.overview}
-                        tipo="movie"
+                        pelicula={pelicula}
                     />
                 ))}
             </div>

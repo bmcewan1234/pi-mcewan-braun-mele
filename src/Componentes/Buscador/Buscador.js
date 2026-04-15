@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 class Buscador extends Component {
@@ -33,9 +32,9 @@ class Buscador extends Component {
                     <button type="submit" className="buscador-btn">Buscar</button>
                     <div>
                         <input type="radio" id="pelicula" name="tipo" value="movie" onChange={(e) => this.setState({ tipo: e.target.value })} />
-                        <label for="pelicula">Peliculas</label>
+                        <label htmlFor="pelicula">Peliculas</label>
                         <input type="radio" id="serie" name="tipo" value="tv" onChange={(e) => this.setState({ tipo: e.target.value })} />
-                        <label for="serie">Series</label>
+                        <label htmlFor="serie">Series</label>
                     </div>
                 </form>
             </>

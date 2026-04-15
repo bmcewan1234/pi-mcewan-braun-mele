@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
+import SeccionSeriesPopulares from "../../Componentes/SeriesPopulares/SeriesPopulares.js";
 
 class Home extends Component {
     constructor(props) {
@@ -45,7 +46,7 @@ class Home extends Component {
                 </form>
 
                 <h2>Peliculas mas populares</h2>
-                <Link to="/populares">Ver todas</Link>
+                <Link to="/peliculasPop">Ver todas</Link>
 
                 <section className="cards">
                     {this.state.populares.map((peli, idx) =>
@@ -63,6 +64,14 @@ class Home extends Component {
                             key={idx}
                             pelicula={peli} />)}
                 </section>
+
+                <h2>Series mas populares</h2>
+                <Link to="/seriesPop">Ver todas</Link>
+
+                <section className="cards" id="series-populares">
+                    <SeccionSeriesPopulares />  
+                </section>
+
             </React.Fragment>
         )
     }
