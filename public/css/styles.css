@@ -9,13 +9,6 @@ nav {
     margin: 0 !important;
     
 }
-.nav ul{
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    
-}
 .nav a {
     color: #444;
     text-decoration: none;

@@ -3,24 +3,34 @@ import { Link } from "react-router-dom";
 
 
 function Header() {
-  let array = [{ nombre: "Home", link: "/Home.js" }, { nombre: "Peliculas", link:"/peliculas" }, { nombre: "Series", link:"/series" }, { nombre: "Log in", link: "/login" }, { nombre: "Sign in", link: "/Signin" }, {nombre : "Favoritos", link : "/Favoritos"}];
   return (
     <React.Fragment>
       <div >
-        <h1 className="titulo">Movie MMB</h1>
+        <h1>Movie MMB</h1>
       </div>
-      <nav className="nav">
-        <ul>
-          {array.map(elemento => {
-            return (
-              <li key={elemento.link}>
-                <Link to={elemento.link}>{elemento.nombre}</Link>
-              </li>
-            )
-          })}
-        </ul>
-      </nav>
-
+      <nav>
+             <ul class="nav nav-tabs my-4">
+                <li className="nav-item">
+                    <Link to="/home" class="nav-link"> Home</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/peliculas" class="nav-link"> Peliculas</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/series" class="nav-link"> Series</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/Favoritos" class="nav-link"> Favoritas</Link>
+                </li>
+                <li class="nav-item ml-auto">
+                    <Link to="/registro" class="nav-link"> Registro</Link>
+                </li>
+                <li class="nav-item">
+                    <Link to="/login" class="nav-link"> Login</Link>
+                </li>
+            </ul>
+           
+        </nav>
     </React.Fragment>
   )
 }

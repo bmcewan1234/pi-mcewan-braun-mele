@@ -1,8 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class CardPeli extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             ver: "Ver descripcion",
@@ -10,45 +10,47 @@ class CardPeli extends Component {
         }
     }
 
-    boton(){
-        if(this.state.ver === "Ver descripcion"){
+    boton() {
+        if (this.state.ver === "Ver descripcion") {
             this.setState({
                 ver: "Ocultar descripcion",
                 clase: "mostrar"
             })
         }
-        else{this.setState({
-            ver: "Ver descripcion",
-            clase:"no-mostrar"
-        })}
+        else {
+            this.setState({
+                ver: "Ver descripcion",
+                clase: "no-mostrar"
+            })
+        }
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <article className="single-card-movie">
 
                 {/*img (cambiar img*/}
                 <img src={"https://image.tmdb.org/t/p/w342/" + this.props.pelicula.poster_path} alt={this.props.pelicula.title} />
 
                 <div className="cardBody">
-                    <h2>{this.props.pelicula.title}</h2> 
+                    <h2>{this.props.pelicula.title}</h2>
 
                     <div className="card-buttons">
                         <button onClick={() => this.boton()}>{this.state.ver}</button>
                     </div>
- 
+
                     <div className={this.state.clase + " card-text"}>
                         <p>{this.props.pelicula.overview}</p>
                     </div>
-                
+
                     <div className="card-buttons">
-		                <Link to={"/detalle/" + this.props.pelicula.id}>
+                        <Link to={"/detalle/" + this.props.pelicula.id}>
                             <button>Ir a detalle</button>
                         </Link>
                     </div>
                 </div>
 
-            {/*boton agregar/quitar de favoritos en CardRM*/}
+                {/*boton agregar/quitar de favoritos en CardRM*/}
 
             </article>
         )
