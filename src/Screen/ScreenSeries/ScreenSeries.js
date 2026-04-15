@@ -1,7 +1,7 @@
-import Cardpeli from "../../Components/Cardpeli/Cardpeli";
+import CardSeries from "../../Components/CardSeries/CardSeries";
 import { Component } from "react";
 
-class ScreenPeliculas extends Component {
+class ScreenSeries extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,7 +71,7 @@ class ScreenPeliculas extends Component {
                     {
                         this.state.personajes.length > 0 ? (
                             this.state.personajes.map((personaje) => (
-                                <Cardpeli
+                                <CardSeries
                                     id={personaje.id}
                                     nombre={personaje.title}
                                     foto={"https://image.tmdb.org/t/p/w342" + personaje.poster_path}
@@ -90,4 +90,4 @@ class ScreenPeliculas extends Component {
             )
     }
 }
-export default ScreenPeliculas
+export default ScreenSeries
