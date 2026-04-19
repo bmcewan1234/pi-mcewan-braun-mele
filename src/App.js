@@ -9,6 +9,8 @@ import { Route, Switch } from "react-router-dom";
 import SeccionSeriesPopulares from "./Componentes/SeriesPopulares/SeriesPopulares";
 import SeccionPelisPopulares from "./Componentes/PeliPopulares/PeliPopulares";
 import SearchResults from "./Screen/SearchResults/SearchResults";
+import DetallePeli from "./Screen/DetallePeli/DetallePeli"; 
+import DetalleSerie from "./Screen/DetalleSerie/DetalleSerie";  
 
 
 
@@ -24,6 +26,8 @@ function App() {
         <Route path="/peliculasPop" component={SeccionPelisPopulares} />
         <Route path="/seriesPop" component={SeccionSeriesPopulares} />
         <Route path="/search/:nombre/:tipo" component={SearchResults} />
+        <Route path="/detallePeli" component={DetallePeli} /> 
+        <Route path="/detalleSerie" component={DetalleSerie} />
       </Switch>
       <Buscador />
       <Footer />

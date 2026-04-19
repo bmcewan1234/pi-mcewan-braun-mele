@@ -84,7 +84,7 @@ class CardPeli extends Component {
                     </div>
 
                     <div className="card-buttons">
-                        <Link to={"/detalle/" + this.props.pelicula.id}>
+                        <Link to={"/detallePeli" + this.props.pelicula.id}>
                             <button>Ir a detalle</button>
                         </Link>
                     </div>

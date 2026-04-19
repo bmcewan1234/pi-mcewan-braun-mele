@@ -41,7 +41,7 @@ class CardSerie extends Component {
     }
 
   }
-  
+
   sacarFav() {
     let idFav = this.props.serie.id
     let storage = localStorage.getItem("favoritos")
@@ -87,7 +87,7 @@ class CardSerie extends Component {
           </div>
 
           <div className="card-buttons">
-            <Link to={"/detalleS/" + this.props.serie.id}>
+            <Link to={"/detalleSerie" + this.props.serie.id}>
               <button>Ir a detalle</button>
             </Link>
           </div>

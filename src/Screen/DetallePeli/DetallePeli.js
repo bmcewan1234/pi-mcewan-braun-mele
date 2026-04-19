@@ -1,11 +1,11 @@
 import { Component } from "react"
-import Personajes from "../../../../mi-primer-proyecto/src/componentes/Personajes/Personajes";
+
 
 class DetallePeli extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            personajes: ""
+            personaje: ""
         }
     }
     componentDidMount() {
