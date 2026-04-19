@@ -28,11 +28,7 @@ class SeccionPelisPopulares extends Component {
                 {this.state.peliculas.map((pelicula) => (
                     <CardSerie
                         key={pelicula.id}
-                        id={pelicula.id}
-                        nombre={pelicula.title}
-                        imagen={pelicula.poster_path}
-                        descripcion={pelicula.overview}
-                        tipo="movie"
+                        serie={pelicula}
                     />
                 ))}
 

@@ -23,41 +23,41 @@ class CardSerie extends Component {
       })
     }
   }
-  agregarFavS() {
-    let idFav = this.props.id
-    let storage = localStorage.getItem("favoritosS")
+  agregarFav() {
+    let idFav = this.props.serie.id
+    let storage = localStorage.getItem("favoritos")
     if (storage != null) {
       let storageParse = JSON.parse(storage)
       storageParse.push(idFav)
       let storageString = JSON.stringify(storageParse)
-      localStorage.setItem("favoritosS", storageString)
+      localStorage.setItem("favoritos", storageString)
       this.setState({ favorito: true })
     } else {
       let arrayIDs = []
       arrayIDs.push(idFav)
       let arrayString = JSON.stringify(arrayIDs)
-      localStorage.setItem("favoritosS", arrayString)
+      localStorage.setItem("favoritos", arrayString)
       this.setState({ favorito: true })
     }
 
   }
-
-  sacarFavS() {
-    let idFav = this.props.id
-    let storage = localStorage.getItem("favoritosS")
+  
+  sacarFav() {
+    let idFav = this.props.serie.id
+    let storage = localStorage.getItem("favoritos")
     if (storage !== null) {
       let storageParseado = JSON.parse(storage)
       let storageFiltrado = storageParseado.filter(id => id !== idFav)
       let storageString = JSON.stringify(storageFiltrado)
-      localStorage.setItem("favoritosS", storageString)
+      localStorage.setItem("favoritos", storageString)
       this.setState({ favorito: false })
     }
   }
   componentDidMount() {
-    let storage = localStorage.getItem("favoritosS")
+    let storage = localStorage.getItem("favoritos")
     if (storage !== null) {
       let storageParseado = JSON.parse(storage)
-      let estaEnFav = storageParseado.includes(Number(this.props.id))
+      let estaEnFav = storageParseado.includes(Number(this.props.serie.id))
 
       this.setState({
         favorito: estaEnFav
@@ -70,11 +70,11 @@ class CardSerie extends Component {
       <article className="single-card-movie">
 
         <img
-          src={"https://image.tmdb.org/t/p/w342/" + this.props.imagen}
-          alt={this.props.nombre}
+          src={"https://image.tmdb.org/t/p/w342/" + this.props.serie.poster_path}
+          alt={this.props.serie.title}
         />
         <div className="cardBody">
-          <h2>{this.props.nombre}</h2>
+          <h2>{this.props.serie.title}</h2>
 
           <div className="card-buttons">
             <button onClick={() => this.ocultar()}>
@@ -83,11 +83,11 @@ class CardSerie extends Component {
           </div>
 
           <div className={this.state.clase + " card-text"}>
-            <p>{this.props.descripcion}</p>
+            <p>{this.props.serie.overview}</p>
           </div>
 
           <div className="card-buttons">
-            <Link to={"/detalleS/" + this.props.id}>
+            <Link to={"/detalleS/" + this.props.serie.id}>
               <button>Ir a detalle</button>
             </Link>
           </div>
@@ -95,16 +95,10 @@ class CardSerie extends Component {
           <div className="card-buttons">
             <button
               className={this.state.favorito === true ? "oculto" : ""}
-              onClick={() => this.agregarFavS()}
-            >
-              Agregar a Favoritos
-            </button>
+              onClick={() => this.agregarFav()} > Agregar a Favoritos </button>
             <button
               className={this.state.favorito === false ? "oculto" : ""}
-              onClick={() => this.sacarFavS()}
-            >
-              Quitar de Favoritos
-            </button>
+              onClick={() => this.sacarFav()} > Quitar de Favoritos </button>
           </div>
         </div>
       </article>
