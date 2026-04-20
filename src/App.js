@@ -34,7 +34,7 @@ function App() {
         <Route path="/cartelPeli" component={PeliCartelera} />
         <Route path="/cartelSerie" component={SeriesCartelera} />  
       </Switch>
-      <Buscador />  
+
       <Footer />
     </>
   );
