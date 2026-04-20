@@ -23,7 +23,7 @@ function Header() {
                     <Link to="/Favoritos" class="nav-link"> Favoritas</Link>
                 </li>
                 <li class="nav-item ml-auto">
-                    <Link to="/registro" class="nav-link"> Registro</Link>
+                    <Link to="/register" class="nav-link"> Registro</Link>
                 </li>
                 <li class="nav-item">
                     <Link to="/login" class="nav-link"> Login</Link>
