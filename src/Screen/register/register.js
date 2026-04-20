@@ -1,102 +1,85 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 class Register extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = {
-            email: "",
-            password: "",
-            error: ""
+        this.state = { 
+          email: "",
+          password: "",  
+          error: ""
         };
     }
 
-    cambiarDatos = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    };
-
-    enviarFormulario = (e) => {
+    evitarSubmit(e){
         e.preventDefault();
-
-        const { email, password } = this.state;
-
-        if (password.length < 6) {
-            this.setState({ error: "Mínimo 6 caracteres" });
-            return;
+    
+        let users = JSON.parse(localStorage.getItem("savedUsers"))  
+        if (users === null) {
+            users = []
         }
 
-        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let existeusuario = users.filter(user => user.email === this.state.email) 
 
-        const userExiste = users.find(u => u.email === email);
-
-        if (userExiste) {
-            this.setState({ error: "Email ya registrado" });
-            return;
+        if(existeusuario.length > 0) { 
+            this.setState({error:"Este mail ya esta en uso"}) 
         }
+        else if (this.state.password.length < 6) {
+            this.setState({error:"Tu password debe tener al menos 6 caracteres"})
+        }
+        else { 
+            users.push({
+                email: this.state.email,
+                password: this.state.password
+            })
 
-        users.push({ email, password });
+            localStorage.setItem("savedUsers", JSON.stringify(users));
+            this.props.history.push("/login")
+        }
+    }
+     
+    controlarCambios(e){
+        this.setState({email: e.target.value})
+    }
 
-        localStorage.setItem("users", JSON.stringify(users));
+    controlarCambiosPassword(e){
+        this.setState({password: e.target.value})
+    }
 
-    };
-
-    render() {
-        return (
-            <div className="container mt-5">
-
-                <h2 className="alert alert-primary text-center">
-                    Registro
-                </h2>
+    render(){
+        return(
+            <React.Fragment>
+                <h2 className="alert alert-primary">Registro</h2>
 
                 <div className="row justify-content-center">
                     <div className="col-md-6">
-
-                        <form onSubmit={this.enviarFormulario}>
+                        <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
 
                             <div className="form-group">
-                                <label>Email</label>
-                                <input
-                                    type="email"
-                                    name="email"
-                                    className="form-control"
-                                    placeholder="Ingresá tu email"
-                                    onChange={this.cambiarDatos}
-                                />
+                                <label htmlFor="email">Email</label>
+                                <input type="email" className="form-control" id="email" name="email" value={this.state.email} onChange={(evento)=> this.controlarCambios(evento)} placeholder="Ingresá tu email"/>
                             </div>
 
                             <div className="form-group">
-                                <label>Contraseña</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    className="form-control"
-                                    placeholder="Ingresá tu contraseña"
-                                    onChange={this.cambiarDatos}
-                                />
+                                <label htmlFor="password">Contraseña</label>
+                                <input type="password" className="form-control" id="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambiosPassword(evento)} placeholder="Ingresá tu contraseña"/>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="btn btn-primary btn-block mt-3"
-                            >
+                            <button type="submit" className="btn btn-primary btn-block">
                                 Registrarse
                             </button>
 
                         </form>
 
+                        {this.state.error !== "" && (
+                            <p className="mt-2 text-danger">{this.state.error}</p>
+                        )}
+
                         <p className="mt-3 text-center">
-                            ¿Ya tenés cuenta?{" "}
-                            <a href="/login">Iniciar sesión</a>
+                            ¿Ya tenés cuenta? <a href="/login">Iniciar sesión</a>
                         </p>
-
-                        <p className="text-danger text-center">
-                            {this.state.error}
-                        </p>
-
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }
