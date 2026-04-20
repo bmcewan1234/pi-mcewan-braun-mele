@@ -29,8 +29,8 @@ function App() {
         <Route path="/peliculasPop" component={SeccionPelisPopulares} />
         <Route path="/seriesPop" component={SeccionSeriesPopulares} />
         <Route path="/search/:nombre/:tipo" component={SearchResults} />
-        <Route path="/detallePeli" component={DetallePeli} /> 
-        <Route path="/detalleSerie" component={DetalleSerie} />
+        <Route path="/detallePeli/:id" component={DetallePeli} /> 
+        <Route path="/detalleSerie/:id" component={DetalleSerie} />
         <Route path="/cartelPeli" component={PeliCartelera} />
         <Route path="/cartelSerie" component={SeriesCartelera} />  
       </Switch>

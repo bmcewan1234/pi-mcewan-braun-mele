@@ -9,27 +9,37 @@ class DetallePeli extends Component {
         }
     }
     componentDidMount() {
-        const id = this.props.match.params.id;
-        fetch("https://api.themoviedb.org/3/movie/" + id + "?api_key=8c9e1a0f2c5d1e7b4a9c8e5f6a7b8c9&language=en-US")
+        const id = this.props.match.params.id
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=2793aaadf72ebc55a67c09e7919aa668`)
             .then(response => response.json())
             .then(data => this.setState({ personaje: data }))
             .catch(error => console.log(error))
+
+
     }
     render() {
+        const personaje = this.state.personaje;
+        const genero = personaje && personaje.genres && personaje.genres.length > 0
+            ? personaje.genres[0].name
+            : "Sin genero";
+
         return (
             <>
-                {this.state.personaje ? (
+                {personaje ? (
                     <>
-                        <h2 className="alert alert-warning">{this.state.personaje.original_title}</h2>
-                        <section className="container">
-                            <section className="row">
-                                <h3>Descripcion</h3>
-                                <p className="Pdeta">{this.state.personaje.overview}</p>
-                                <p className="Pdeta">Genero:{this.state.personaje.genres[0].name}</p>
-                                <p className="Pdeta">Rating:{this.state.personaje.vote_average}</p>
-                                <p className="Pdeta">Fecha de estreno:{this.state.personaje.release_date}</p>
-                                <p className="Pdeta">Duracion:{this.state.personaje.runtime} minutos</p>
+                        <h2 className="alert alert-warning">{personaje.title}</h2>
+                        <section className="row">
+                            <img className="col-md-6" src={"https://image.tmdb.org/t/p/w342" + personaje.poster_path} alt={personaje.title} />
+                            <section className="col-md-6 info">
+                                <h3>Descripción</h3>
+                                <p className="description">{personaje.overview}</p>
+                                <p className="mt-0 mb-0" id="release-date"><strong>Genero:</strong>{genero}</p>
+                                <p className="mt-0 mb-0" id="release-date"><strong>Rating:</strong>{personaje.vote_average}</p>
+                                <p className="mt-0 mb-0" id="release-date"><strong>Fecha de estreno:</strong>{personaje.release_date}</p>
+
+                                <button className="btn alert-primary">Favoritos</button>
                             </section>
+
                         </section>
                     </>
                 ) : (

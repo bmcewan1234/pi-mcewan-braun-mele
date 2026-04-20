@@ -87,7 +87,7 @@ class CardSerie extends Component {
           </div>
 
           <div className="card-buttons">
-            <Link to={"/detalleSerie" + this.props.serie.id}>
+            <Link to={"/detalleSerie/" + this.props.serie.id}>
               <button className="btn btn-primary">Ir a detalle</button>
             </Link>
           </div>

@@ -9,7 +9,7 @@ class DetalleSerie extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id
-        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=bb857f4016bcff3ee72ee89cb409417f`)
+        fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=2793aaadf72ebc55a67c09e7919aa668`)
             .then(response => response.json())
             .then(data => this.setState({ personaje: data }))
             .catch(error => console.log(error))
@@ -24,6 +24,7 @@ class DetalleSerie extends Component {
                     <>
                         <h2 class="alert alert-warning">{this.state.personaje.name}</h2>
                         <section class="row">
+                        <img class="col-md-6" src={"https://image.tmdb.org/t/p/w342" + this.state.personaje.poster_path} alt="" />
                             <section class="col-md-6 info">
                                 <h3>Descripción</h3>
                                 <p class="description">{this.state.personaje.overview}</p>
@@ -34,7 +35,7 @@ class DetalleSerie extends Component {
                                 <p class="mt-0 seasons"><strong>Temporadas:</strong>{this.state.personaje.number_of_seasons}</p>
                                 <button className="btn alert-primary">Favoritos</button>
                             </section>
-                            <img class="col-md-6" src={"https://image.tmdb.org/t/p/w342" + this.state.personaje.poster_path} alt="" />
+                           
                         </section>
                     </>
                 ) : (
