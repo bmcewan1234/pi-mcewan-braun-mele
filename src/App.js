@@ -15,6 +15,7 @@ import DetallePeli from "./Screen/DetallePeli/DetallePeli";
 import DetalleSerie from "./Screen/DetalleSerie/DetalleSerie";  
 import ScreenPeliculas from "./Screen/ScreenPeliculas/ScreenPeliculas.js";
 import ScreenSeries from "./Screen/ScreenSeries/ScreenSeries.js"; 
+import Logout from "./Screen/logout/logout.js";
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/cartelSerie" component={SeriesCartelera} />  
         <Route path="/peliculas" component={ScreenPeliculas} />
         <Route path="/series" component={ScreenSeries} />
+        <Route path="/Logout" component={Logout}/>
       </Switch>
 
       <Footer />

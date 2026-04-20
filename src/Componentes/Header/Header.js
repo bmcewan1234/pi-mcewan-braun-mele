@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import Cookies from "universal-cookie";
 
 
@@ -23,7 +23,7 @@ function Header() {
             <Link to="/series" class="nav-link"> Series</Link>
           </li>
           {cookie == null ? (
-            <div>
+            <>
               <li class="nav-item ml-auto">
                 <Link to="/register" class="nav-link"> Registro</Link>
               </li>
@@ -31,23 +31,23 @@ function Header() {
                 <Link to="/login" class="nav-link"> Login</Link>
               </li>
 
-            </div>) : (
+            </>) : (
             <>
               <li class="nav-item">
                 <Link to="/Favoritos" class="nav-link"> Favoritas</Link>
               </li>
               <li className="nav-item ml-auto">
-                <Link to="">log out</Link>
+                <Link to="/Logout" className="nav-link">log out</Link>
               </li>
             </>
           )
         }
                
                
-            </ul>
+        </ul>
 
       </nav>
     </React.Fragment>
   )
 }
-export default Header 
+export default withRouter(Header)
