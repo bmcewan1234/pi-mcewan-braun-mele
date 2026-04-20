@@ -94,10 +94,10 @@ class CardSerie extends Component {
 
           <div className="card-buttons">
             <button
-              className={this.state.favorito === true ? "oculto" : ""}
+              className={this.state.favorito === true ? "no-mostrar" : ""}
               onClick={() => this.agregarFav()} > Agregar a Favoritos </button>
             <button 
-              className={this.state.favorito === false ? "oculto" : ""}
+              className={this.state.favorito === false ? "no-mostrar" : ""}
               onClick={() => this.sacarFav()} > Quitar de Favoritos </button>
           </div>
         </div>
