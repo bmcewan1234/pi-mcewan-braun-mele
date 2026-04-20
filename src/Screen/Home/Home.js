@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
-import SeccionSeriesPopulares from "../../Componentes/SeriesPopulares/SeriesPopulares.js";
+import CardSerie from "../../Componentes/CardSeries/CardSeries.js";
 
 class Home extends Component {
     constructor(props) {
@@ -9,7 +9,9 @@ class Home extends Component {
         this.state = {
             valor: "",
             populares: [],
-            cartel: []
+            cartel: [],
+            seriesPop: [],
+            seriesCartel: []
         }
     }
 
@@ -34,6 +36,16 @@ class Home extends Component {
             .then(response => response.json())
             .then(data => this.setState({ cartel: data.results }))
             .catch(error => console.log(error))
+
+        fetch("https://api.themoviedb.org/3/tv/on_the_air?api_key=2793aaadf72ebc55a67c09e7919aa668")
+            .then(response => response.json())
+            .then(data => this.setState({ seriesPop: data.results }))
+            .catch(error => console.log(error))
+
+        fetch("https://api.themoviedb.org/3/tv/on_the_air?api_key=2793aaadf72ebc55a67c09e7919aa668")
+            .then(response => response.json())
+            .then(data => this.setState({ seriesCartel: data.results }))
+            .catch(error => console.log(error))
     }
 
     render() {
@@ -45,7 +57,7 @@ class Home extends Component {
                     <button className="btn-sm" type="submit">Buscar</button>
                 </form>
 
-                <h2>Peliculas mas populares</h2>
+                <h2 class="alert alert-primary">Peliculas mas populares</h2>
                 <Link to="/peliculasPop">Ver todas</Link>
 
                 <section className="cards">
@@ -55,8 +67,8 @@ class Home extends Component {
                             pelicula={peli} />)}
                 </section>
 
-                <h2>Peliculas en cartel</h2>
-                <Link to="/cartel">Ver todas</Link>
+                <h2 class="alert alert-primary">Peliculas en cartel</h2>
+                <Link to="/cartelPeli">Ver todas</Link>
 
                 <section className="cards" id="now-playing">
                     {this.state.cartel.map((peli, idx) =>
@@ -65,11 +77,24 @@ class Home extends Component {
                             pelicula={peli} />)}
                 </section>
 
-                <h2>Series mas populares</h2>
+                <h2 class="alert alert-warning">Series mas populares</h2>
                 <Link to="/seriesPop">Ver todas</Link>
 
-                <section className="cards" id="series-populares">
-                    <SeccionSeriesPopulares />  
+                <section className="cards" >
+                {this.state.seriesPop.map((serie, idx) =>
+                        <CardSerie
+                            key={idx}
+                            serie={serie} />)} 
+                </section>
+
+                <h2 class="alert alert-warning">Series en cartel</h2>
+                <Link to="/cartelSerie">Ver todas</Link>
+
+                <section className="cards" >
+                {this.state.seriesCartel.map((serie, idx) =>
+                        <CardSerie
+                            key={idx}
+                            serie={serie} />)}
                 </section>
 
             </React.Fragment>

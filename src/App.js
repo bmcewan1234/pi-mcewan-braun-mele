@@ -8,6 +8,8 @@ import Register from "./Screen/register/register";
 import { Route, Switch } from "react-router-dom";
 import SeccionSeriesPopulares from "./Componentes/SeriesPopulares/SeriesPopulares";
 import SeccionPelisPopulares from "./Componentes/PeliPopulares/PeliPopulares";
+import PeliCartelera from "./Componentes/PeliCartelera/PeliCartelera.js";
+import SeriesCartelera from "./Componentes/SeriesCartelera/SeriesCartelera.js";
 import SearchResults from "./Screen/SearchResults/SearchResults";
 import DetallePeli from "./Screen/DetallePeli/DetallePeli"; 
 import DetalleSerie from "./Screen/DetalleSerie/DetalleSerie";  
@@ -17,6 +19,7 @@ import DetalleSerie from "./Screen/DetalleSerie/DetalleSerie";
 
 function App() {
   return (
+   
     <>
       <Header />
       <Switch>
@@ -28,8 +31,10 @@ function App() {
         <Route path="/search/:nombre/:tipo" component={SearchResults} />
         <Route path="/detallePeli" component={DetallePeli} /> 
         <Route path="/detalleSerie" component={DetalleSerie} />
+        <Route path="/cartelPeli" component={PeliCartelera} />
+        <Route path="/cartelSerie" component={SeriesCartelera} />  
       </Switch>
-      <Buscador />
+      <Buscador />  
       <Footer />
     </>
   );

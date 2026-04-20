@@ -24,6 +24,7 @@ class SeccionPelisPopulares extends Component {
 
     render() {
         return (
+            <h1>Peliculas mas populares</h1>,
             <div className="row cards" id="movies">
                 {this.state.peliculas.map((pelicula) => (
                     <CardPeli

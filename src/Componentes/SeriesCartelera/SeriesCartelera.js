@@ -3,7 +3,7 @@ import CardSerie from "../CardSeries/CardSeries.js";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";
 
-class SeccionPelisPopulares extends Component {
+class SeriesCartelera extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +25,7 @@ class SeccionPelisPopulares extends Component {
     render() {
         return (
             <React.Fragment>
-                <h1>Series mas populares</h1>
+                <h1>Series en cartelera</h1>
                 <div className="row cards" id="series">
                     {this.state.series.map((serie) => (
                         <CardSerie
@@ -39,4 +39,4 @@ class SeccionPelisPopulares extends Component {
     }
 }
 
-export default SeccionPelisPopulares;
+export default SeriesCartelera;

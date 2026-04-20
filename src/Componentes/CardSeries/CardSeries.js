@@ -88,7 +88,7 @@ class CardSerie extends Component {
 
           <div className="card-buttons">
             <Link to={"/detalleSerie" + this.props.serie.id}>
-              <button>Ir a detalle</button>
+              <button className="btn btn-primary">Ir a detalle</button>
             </Link>
           </div>
 
@@ -96,7 +96,7 @@ class CardSerie extends Component {
             <button
               className={this.state.favorito === true ? "oculto" : ""}
               onClick={() => this.agregarFav()} > Agregar a Favoritos </button>
-            <button
+            <button 
               className={this.state.favorito === false ? "oculto" : ""}
               onClick={() => this.sacarFav()} > Quitar de Favoritos </button>
           </div>
