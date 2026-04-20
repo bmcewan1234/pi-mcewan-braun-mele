@@ -36,7 +36,7 @@ class ScreenPeliculas extends Component {
 
 
     cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.paginaDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
+        fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.pagDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
             .then(response => response.json())
             .then(data => this.setState(
                 {
@@ -83,7 +83,7 @@ class ScreenPeliculas extends Component {
 
                     }
                     </section>
-                    <button onClick={() => this.cargarMas()}>Mas personajes</button>
+                    <button onClick={() => this.cargarMas()}>Mas Peliculas</button>
                 </>
 
                 

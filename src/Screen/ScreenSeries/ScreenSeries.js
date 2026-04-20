@@ -81,7 +81,7 @@ class ScreenSeries extends Component {
 
                     }
                     </section>
-                    <button onClick={() => this.cargarMas()}>Mas personajes</button>
+                    <button onClick={() => this.cargarMas()}>Mas series</button>
                 </>
 
                 
