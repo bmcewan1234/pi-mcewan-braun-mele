@@ -10,8 +10,9 @@ class SearchResults extends Component {
         }
     }
 
-    traerResultados() {
-        const nombre = this.props.match.params.nombre;
+    
+    componentDidMount() {
+         const nombre = this.props.match.params.nombre;
         const tipo = this.props.match.params.tipo;
         fetch(`https://api.themoviedb.org/3/search/${tipo}?query=${nombre}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
             .then(response => response.json())
@@ -19,18 +20,16 @@ class SearchResults extends Component {
             .catch(error => console.log(error))
     }
 
-    componentDidMount() {
-        this.traerResultados();
-    }
-
     componentDidUpdate(prevProps) {
-        const nombreAnterior = prevProps.match.params.nombre;
-        const tipoAnterior = prevProps.match.params.tipo;
-        const nombreActual = this.props.match.params.nombre;
-        const tipoActual = this.props.match.params.tipo;
+        const nombre = this.props.match.params.nombre;
+        const tipo = this.props.match.params.tipo;
 
-        if (nombreAnterior !== nombreActual || tipoAnterior !== tipoActual) {
-            this.traerResultados();
+        if(prevProps.match.params.nombre !== nombre || prevProps.match.params.tipo !== tipo) {
+
+         fetch(`https://api.themoviedb.org/3/search/${tipo}?query=${nombre}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
+            .then(response => response.json())
+            .then(data => this.setState({ personajes: data.results }))
+            .catch(error => console.log(error))
         }
     }
 
@@ -41,12 +40,13 @@ class SearchResults extends Component {
         return (
             <>
                 <Buscador />
-                <section className="container" id="peliculas">
+                <section className="row cards" id="peliculas">
                     {this.state.personajes.length > 0 ? (
                         this.state.personajes.map((personaje) => (
                             <Cardpeli
                                 key={personaje.id}
                                 pelicula={personaje}
+                                tipo={this.props.match.params.tipo}
                             />
                         ))
                     ) : (

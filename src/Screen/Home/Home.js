@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
 import CardSerie from "../../Componentes/CardSeries/CardSeries.js";
+import Buscador from "../../Componentes/Buscador/Buscador.js";
 
 class Home extends Component {
     constructor(props) {
@@ -52,10 +53,7 @@ class Home extends Component {
         return (
             <React.Fragment>
 
-                <form className="search-form" onSubmit={(evento) => this.evitarSubmit(evento)}>
-                    <input type="text" placeholder="Buscar..." onChange={(evento) => this.controlarCambios(evento)} value={this.state.valor} />
-                    <button className="btn-sm" type="submit">Buscar</button>
-                </form>
+                <Buscador/>
 
                 <h2 class="alert alert-primary">Peliculas mas populares</h2>
                 <Link to="/peliculasPop">Ver todas</Link>
