@@ -1,4 +1,4 @@
-import CardSeries from "../../Components/CardSeries/CardSeries";
+import CardSerie from "../../Componentes/CardSeries/CardSeries.js";
 import { Component } from "react";
 
 class ScreenSeries extends Component {
@@ -22,7 +22,7 @@ class ScreenSeries extends Component {
 
 
      componentDidMount(){
-        fetch("https://api.themoviedb.org/3/movie/popular?api_key=bb857f4016bcff3ee72ee89cb409417f")
+        fetch("https://api.themoviedb.org/3/tv/popular?api_key=bb857f4016bcff3ee72ee89cb409417f")
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -36,7 +36,7 @@ class ScreenSeries extends Component {
 
 
     cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.paginaDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
+        fetch(`https://api.themoviedb.org/3/tv/popular?page=${this.state.pagDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
             .then(response => response.json())
             .then(data => this.setState(
                 {
@@ -50,7 +50,7 @@ class ScreenSeries extends Component {
     filtrarPerso(input){
         input = this.state.valor.toLowerCase();
         let filtrado = this.state.personajesCopia.filter(
-            personaje => personaje.title.toLowerCase().includes(input)
+            personaje => personaje.name.toLowerCase().includes(input)
         )
         
         this.setState({
@@ -66,16 +66,14 @@ class ScreenSeries extends Component {
                         <input type="text" onChange={(e)=>this.cambioValor(e)} value={this.state.valor}></input>
                         <input type="submit" value="submit"></input>
                 </form>
-                <h2 className="alert alert-primary">Peliculas</h2>
+                <h2 className="alert alert-primary">Series</h2>
                 <section className="row cards" id="now-playing">
                     {
                         this.state.personajes.length > 0 ? (
                             this.state.personajes.map((personaje) => (
-                                <CardSeries
-                                    id={personaje.id}
-                                    nombre={personaje.title}
-                                    foto={"https://image.tmdb.org/t/p/w342" + personaje.poster_path}
-                                    desc={personaje.overview} />
+                                <CardSerie
+                                    key={personaje.id}
+                                    serie={personaje} />
                             ))
                         ) : (
                             <p>Cargando... </p>

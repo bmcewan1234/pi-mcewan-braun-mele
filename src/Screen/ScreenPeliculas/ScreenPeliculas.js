@@ -1,4 +1,4 @@
-import Cardpeli from "../../Components/Cardpeli/Cardpeli";
+import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
 import { Component } from "react";
 
 class ScreenPeliculas extends Component {
@@ -73,9 +73,9 @@ class ScreenPeliculas extends Component {
                             this.state.personajes.map((personaje) => (
                                 <Cardpeli
                                     id={personaje.id}
-                                    nombre={personaje.title}
-                                    foto={"https://image.tmdb.org/t/p/w342" + personaje.poster_path}
-                                    desc={personaje.overview} />
+                                    pelicula={personaje}
+                                    
+                                    />
                             ))
                         ) : (
                             <p>Cargando... </p>

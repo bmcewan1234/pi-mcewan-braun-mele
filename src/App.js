@@ -13,7 +13,8 @@ import SeriesCartelera from "./Componentes/SeriesCartelera/SeriesCartelera.js";
 import SearchResults from "./Screen/SearchResults/SearchResults";
 import DetallePeli from "./Screen/DetallePeli/DetallePeli"; 
 import DetalleSerie from "./Screen/DetalleSerie/DetalleSerie";  
-
+import ScreenPeliculas from "./Screen/ScreenPeliculas/ScreenPeliculas.js";
+import ScreenSeries from "./Screen/ScreenSeries/ScreenSeries.js"; 
 
 
 
@@ -33,6 +34,8 @@ function App() {
         <Route path="/detalleSerie/:id" component={DetalleSerie} />
         <Route path="/cartelPeli" component={PeliCartelera} />
         <Route path="/cartelSerie" component={SeriesCartelera} />  
+        <Route path="/peliculas" component={ScreenPeliculas} />
+        <Route path="/series" component={ScreenSeries} />
       </Switch>
 
       <Footer />
