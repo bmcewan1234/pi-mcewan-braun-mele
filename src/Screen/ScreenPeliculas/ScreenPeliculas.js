@@ -7,7 +7,8 @@ class ScreenPeliculas extends Component {
         this.state = {
             personajes: [],
             personajesCopia: [],
-            pagDos: 2
+            pagDos: 2,
+            valor: ""
         }
     }
 
@@ -47,7 +48,7 @@ class ScreenPeliculas extends Component {
             ))
     }
 
-    filtrarPerso(input){
+    filtrarPersonajesnpm(input){
         input = this.state.valor.toLowerCase();
         let filtrado = this.state.personajesCopia.filter(
             personaje => personaje.title.toLowerCase().includes(input)

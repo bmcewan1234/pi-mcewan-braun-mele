@@ -7,7 +7,9 @@ class ScreenSeries extends Component {
         this.state = {
             personajes: [],
             personajesCopia: [],
-            pagDos: 2
+            pagDos: 2,
+            valor: ""
+
         }
     }
 
@@ -47,7 +49,7 @@ class ScreenSeries extends Component {
             ))
     }
 
-    filtrarPerso(input){
+    filtrarPersonajes(input){
         input = this.state.valor.toLowerCase();
         let filtrado = this.state.personajesCopia.filter(
             personaje => personaje.name.toLowerCase().includes(input)
