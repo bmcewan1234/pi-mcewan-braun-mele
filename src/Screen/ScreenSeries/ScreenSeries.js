@@ -15,13 +15,9 @@ class ScreenSeries extends Component {
 
     evitarSumbit(e){
         e.preventDefault();
-        this.filtrarPersonajes(this.state.valor)
     }
 
-    cambioValor(e){
-        this.setState({valor: e.target.value});
-    }
-
+  
 
      componentDidMount(){
         fetch("https://api.themoviedb.org/3/tv/popular?api_key=bb857f4016bcff3ee72ee89cb409417f")
@@ -50,6 +46,7 @@ class ScreenSeries extends Component {
     }
 
     filtrarPersonajes(input){
+        this.setState({valor: input.target.value});
         input = this.state.valor.toLowerCase();
         let filtrado = this.state.personajesCopia.filter(
             personaje => personaje.name.toLowerCase().includes(input)
@@ -65,9 +62,7 @@ class ScreenSeries extends Component {
             <>
                 <form onSubmit={(e) => this.evitarSumbit(e)}>
                         <label>Nombre: </label>
-                        <input type="text" onChange={(e)=>this.cambioValor(e)} value={this.state.valor}></input>
-                        <input type="submit" value="submit"></input>
-                </form>
+                        <input type="text" onChange={(e)=>this.filtrarPersonajes(e)} value={this.state.valor}></input>                </form>
                 <h2 className="alert alert-primary">Series</h2>
                 <section className="row cards" id="now-playing">
                     {
