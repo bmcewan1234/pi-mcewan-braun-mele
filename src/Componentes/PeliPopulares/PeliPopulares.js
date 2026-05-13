@@ -1,32 +1,23 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import CardPeli from "../Cardpeli/Cardpeli.js";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";
 
-class SeccionPelisPopulares extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            peliculas: []
-        };
-    }
+function SeccionPelisPopulares(props){
+    const [peliculas, setPeliculas] = useState([]);
 
-    componentDidMount() {
+    useEffect( () => {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=" + apikey)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({
-                    peliculas: data.results
-                });
-            })
-            .catch((error) => console.log(error));
-    }
+            .then( response => response.json() )
+            .then( data => setPeliculas(data.results))
+            .catch( error => console.log(error))
+    }, [])
 
-    render() {
+
         return (
             <h1>Peliculas mas populares</h1>,
             <div className="row cards" id="movies">
-                {this.state.peliculas.map((pelicula) => (
+                {peliculas.map((pelicula) => (
                     <CardPeli
                         key={pelicula.id}
                         pelicula={pelicula}
@@ -35,6 +26,6 @@ class SeccionPelisPopulares extends Component {
             </div>
         );
     }
-}
+
 
 export default SeccionPelisPopulares;

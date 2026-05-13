@@ -1,33 +1,24 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import CardSerie from "../CardSeries/CardSeries.js";
 
 const apikey = "2793aaadf72ebc55a67c09e7919aa668";
 
-class SeccionPelisPopulares extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            series: []
-        };
-    }
 
-    componentDidMount() {
+function SeccionPelisPopulares(props){
+    const [series, setSeries] = useState([]);
+
+    useEffect( () => {
         fetch("https://api.themoviedb.org/3/tv/on_the_air?api_key=" + apikey)
-            .then((response) => response.json())
-            .then((data) => {
-                this.setState({
-                    series: data.results
-                });
-            })
-            .catch((error) => console.log(error));
-    }
+            .then( response => response.json() )
+            .then( data => setSeries(data.results))
+            .catch( error => console.log(error))
+    }, [])
 
-    render() {
         return (
             <React.Fragment>
                 <h1>Series mas populares</h1>
                 <div className="row cards" id="series">
-                    {this.state.series.map((serie) => (
+                    {series.map((serie) => (
                         <CardSerie
                             key={serie.id}
                             serie={serie}
@@ -37,6 +28,6 @@ class SeccionPelisPopulares extends Component {
             </React.Fragment>
         );
     }
-}
+
 
 export default SeccionPelisPopulares;

@@ -8,7 +8,7 @@ class ScreenSeries extends Component {
             personajes: [],
             personajesCopia: [],
             pagDos: 2,
-            valor: ""
+            valor: "",
 
         }
     }
@@ -26,7 +26,7 @@ class ScreenSeries extends Component {
                 this.setState({
                     personajes: data.results,
                     personajesCopia: data.results,
-                    pagDos: data.page + 1
+                    pagDos: data.page + 1,
                 })
             })
             .catch(error => console.log(error))
