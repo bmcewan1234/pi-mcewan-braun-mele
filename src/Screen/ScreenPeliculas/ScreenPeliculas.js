@@ -1,91 +1,71 @@
 import Cardpeli from "../../Componentes/Cardpeli/Cardpeli.js";
 import { Component } from "react";
+import { useState, useEffect } from "react"
 
-class ScreenPeliculas extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            personajes: [],
-            personajesCopia: [],
-            pagDos: 2,
-            valor: ""
-        }
-    }
+const ScreenPeliculas = () => {
+    const [personajes, setPersonajes] = useState([]);
+    const [personajesCopia, setPersonajesCopia] = useState([]);
+    const [pagDos, setPagDos] = useState(2);
+    const [valor, setValor] = useState("");
 
-    evitarSumbit(e){
+    const evitarSumbit = (e) => {
         e.preventDefault();
-       
     }
 
-   
-
-     componentDidMount(){
+    useEffect(() => {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=bb857f4016bcff3ee72ee89cb409417f")
             .then(response => response.json())
             .then(data => {
-                this.setState({
-                    personajes: data.results,
-                    personajesCopia: data.results,
-                    pagDos: data.page + 1
-                })
+                setPersonajes(data.results);
+                setPersonajesCopia(data.results);
             })
             .catch(error => console.log(error))
-    }
+    }, []);
 
-
-    cargarMas() {
-        fetch(`https://api.themoviedb.org/3/movie/popular?page=${this.state.pagDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
+    const cargarMas = () => {
+        fetch(`https://api.themoviedb.org/3/movie/popular?page=${pagDos}&api_key=bb857f4016bcff3ee72ee89cb409417f`)
             .then(response => response.json())
-            .then(data => this.setState(
+            .then(data => {
+                setPersonajes(prevPersonajes => prevPersonajes.concat(data.results));
+                setPersonajesCopia(prevPersonajesCopia => prevPersonajesCopia.concat(data.results));
+                setPagDos(prevPagDos => prevPagDos + 1);
+            })
+    };
+
+    const filtrarPersonajes = (input) => {
+        setValor(input.target.value);
+        const inputLower = input.target.value.toLowerCase();
+        const filtrado = personajesCopia.filter(
+            personaje => personaje.title.toLowerCase().includes(inputLower)
+        );
+        setPersonajes(filtrado);
+    };
+
+    return (
+        <>
+            <form onSubmit={(e) => evitarSumbit(e)}>
+                <label>Nombre: </label>
+                <input type="text" onChange={filtrarPersonajes} value={valor}></input>
+            </form>
+            <h2 className="alert alert-primary">Peliculas</h2>
+            <section className="row cards" id="now-playing">
                 {
-                    personajes: this.state.personajes.concat(data.results),
-                    personajesCopia: this.state.personajes.concat(data.results),
-                    pagDos: data.page + 1
+                    personajes.length > 0 ? (
+                        personajes.map((personaje) => (
+                            <Cardpeli
+                                id={personaje.id}
+                                pelicula={personaje}
+                            />
+                        ))
+                    ) : (
+                        <p>Cargando... </p>
+                    )
                 }
-            ))
-    }
+            </section>
+            <button onClick={cargarMas}>Mas Peliculas</button>
+        </>
+    );
+};
 
-    filtrarPersonajesnpm(input){
-        this.setState({valor: input.target.value});
-        input = this.state.valor.toLowerCase();
-        let filtrado = this.state.personajesCopia.filter(
-            personaje => personaje.title.toLowerCase().includes(input)
-        )
-        
-        this.setState({
-            personajes: filtrado
-        })
-    }
-    render() {
-        console.log(this.state)
-        return (
-            <>
-                <form onSubmit={(e) => this.evitarSumbit(e)}>
-                        <label>Nombre: </label>
-                        <input type="text" onChange={(e)=>this.filtrarPersonajesnpm(e)} value={this.state.valor}></input>
-                </form>
-                <h2 className="alert alert-primary">Peliculas</h2>
-                <section className="row cards" id="now-playing">
-                    {
-                        this.state.personajes.length > 0 ? (
-                            this.state.personajes.map((personaje) => (
-                                <Cardpeli
-                                    id={personaje.id}
-                                    pelicula={personaje}
-                                    
-                                    />
-                            ))
-                        ) : (
-                            <p>Cargando... </p>
-                        )
-
-                    }
-                    </section>
-                    <button onClick={() => this.cargarMas()}>Mas Peliculas</button>
-                </>
-
-                
-            )
-    }
-}
-export default ScreenPeliculas
+export default ScreenPeliculas;
+            
