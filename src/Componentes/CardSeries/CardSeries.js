@@ -1,109 +1,98 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
-class CardSerie extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      data: "",
-      clase: "no-mostrar",
-      textoBoton: "Ver descripcion",
-      favorito: false
+import { useState, useEffect } from "react"
+
+const CardSerie = (props) => {
+  const [clase, setClase] = useState("no-mostrar");
+  const [textoBoton, setTextoBoton] = useState("Ver descripcion");
+  const [favorito, setFavorito] = useState(false);
+
+  useEffect(() => {
+    let storage = localStorage.getItem("favoritos");
+    if (storage !== null) {
+      let storageParseado = JSON.parse(storage);
+      let estaEnFav = storageParseado.includes(Number(props.serie.id));
+      setFavorito(estaEnFav);
     }
-  }
-  ocultar() {
-    if (this.state.clase === "no-mostrar") {
-      this.setState({
-        clase: "mostrar",
-        textoBoton: "Ocultar descripcion"
-      })
+  }, [props.serie.id]);
+
+  const ocultar = () => {
+    if (clase === "no-mostrar") {
+      setClase("mostrar");
+      setTextoBoton("Ocultar descripcion");
     } else {
-      this.setState({
-        clase: "no-mostrar",
-        textoBoton: "Ver descripcion"
-      })
+      setClase("no-mostrar");
+      setTextoBoton("Ver descripcion");
     }
-  }
-  agregarFav() {
-    let idFav = this.props.serie.id
-    let storage = localStorage.getItem("favoritos")
+  };
+
+  const agregarFav = () => {
+    let idFav = props.serie.id;
+    let storage = localStorage.getItem("favoritos");
     if (storage != null) {
-      let storageParse = JSON.parse(storage)
-      storageParse.push(idFav)
-      let storageString = JSON.stringify(storageParse)
-      localStorage.setItem("favoritos", storageString)
-      this.setState({ favorito: true })
+      let storageParse = JSON.parse(storage);
+      storageParse.push(idFav);
+      let storageString = JSON.stringify(storageParse);
+      localStorage.setItem("favoritos", storageString);
+      setFavorito(true);
     } else {
-      let arrayIDs = []
-      arrayIDs.push(idFav)
-      let arrayString = JSON.stringify(arrayIDs)
-      localStorage.setItem("favoritos", arrayString)
-      this.setState({ favorito: true })
+      let arrayIDs = [];
+      arrayIDs.push(idFav);
+      let arrayString = JSON.stringify(arrayIDs);
+      localStorage.setItem("favoritos", arrayString);
+      setFavorito(true);
     }
+  };
 
-  }
-
-  sacarFav() {
-    let idFav = this.props.serie.id
-    let storage = localStorage.getItem("favoritos")
+  const sacarFav = () => {
+    let idFav = props.serie.id;
+    let storage = localStorage.getItem("favoritos");
     if (storage !== null) {
-      let storageParseado = JSON.parse(storage)
-      let storageFiltrado = storageParseado.filter(id => id !== idFav)
-      let storageString = JSON.stringify(storageFiltrado)
-      localStorage.setItem("favoritos", storageString)
-      this.setState({ favorito: false })
+      let storageParseado = JSON.parse(storage);
+      let storageFiltrado = storageParseado.filter(id => id !== idFav);
+      let storageString = JSON.stringify(storageFiltrado);
+      localStorage.setItem("favoritos", storageString);
+      setFavorito(false);
     }
-  }
-  componentDidMount() {
-    let storage = localStorage.getItem("favoritos")
-    if (storage !== null) {
-      let storageParseado = JSON.parse(storage)
-      let estaEnFav = storageParseado.includes(Number(this.props.serie.id))
+  };
 
-      this.setState({
-        favorito: estaEnFav
-      })
-    }
-  }
+  return (
+    <article className="single-card-movie">
+      <img
+        src={"https://image.tmdb.org/t/p/w342/" + props.serie.poster_path}
+        alt={props.serie.title}
+      />
+      <div className="cardBody">
+        <h2>{props.serie.title}</h2>
 
-  render() {
-    return (
-      <article className="single-card-movie">
-
-        <img
-          src={"https://image.tmdb.org/t/p/w342/" + this.props.serie.poster_path}
-          alt={this.props.serie.title}
-        />
-        <div className="cardBody">
-          <h2>{this.props.serie.title}</h2>
-
-          <div className="card-buttons">
-            <button onClick={() => this.ocultar()}>
-              {this.state.textoBoton}
-            </button>
-          </div>
-
-          <div className={this.state.clase + " card-text"}>
-            <p>{this.props.serie.overview}</p>
-          </div>
-
-          <div className="card-buttons">
-            <Link to={"/detalleSerie/" + this.props.serie.id}>
-              <button className="btn btn-primary">Ir a detalle</button>
-            </Link>
-          </div>
-
-          <div className="card-buttons">
-            <button
-              className={this.state.favorito === true ? "no-mostrar" : ""}
-              onClick={() => this.agregarFav()} > Agregar a Favoritos </button>
-            <button 
-              className={this.state.favorito === false ? "no-mostrar" : ""}
-              onClick={() => this.sacarFav()} > Quitar de Favoritos </button>
-          </div>
+        <div className="card-buttons">
+          <button onClick={() => ocultar()}>
+            {textoBoton}
+          </button>
         </div>
-      </article>
-    )
-  }
+
+        <div className={clase + " card-text"}>
+          <p>{props.serie.overview}</p>
+        </div>
+
+        <div className="card-buttons">
+          <Link to={"/detalleSerie/" + props.serie.id}>
+            <button className="btn btn-primary">Ir a detalle</button>
+          </Link>
+        </div>
+
+        <div className="card-buttons">
+          <button
+            className={favorito === true ? "no-mostrar" : ""}
+            onClick={() => agregarFav()} > Agregar a Favoritos </button>
+          <button
+            className={favorito === false ? "no-mostrar" : ""}
+            onClick={() => this.sacarFav()} > Quitar de Favoritos </button>
+        </div>
+      </div>
+    </article>
+  )
 }
 
 export default CardSerie
+
